@@ -10,9 +10,9 @@ Howto use
 
 ## Creating Transmutator (Mapper)
 
-For a mapping beetewwn two Models you need to crate a transmutator (mapper) by extends AbstractTransmutator<Class from, Class to> and using @Transmutator in the mapper class.
+For a mapping between two Models you need to crate a transmutator (mapper) by extends AbstractTransmutator<Class from, Class to> and using @Transmutator in the mapper class.
 
-For instance you need to Map from BasicUser to BussinesUser, first create a Mapping class for this case
+For instance you need to Map from BasicUser to Employee, first create a Mapping class for this case
 
 
 ``` java 
