@@ -5,11 +5,11 @@ Transmutation
 A simple, easy and usable java model mapper
 
 
- Howto use
- ---------
-___
+Howto use
+---------
+
 ## Creating Transmutator (Mapper)
-___
+
 For a mapping beetewwn two Models you need to crate a transmutator (mapper) by extends AbstractTransmutator<Class from, Class to> and using @Transmutator in the mapper class.
 
 For instance you need to Map from BasicUser to BussinesUser, first create a Mapping class for this case
@@ -28,25 +28,25 @@ public class UserToEmployeeNameTransmutator extends AbstractTransmutator<User,Em
 }
 
 ```
-___
+
 The rules
 ---------
-___
+
 There are 3 types of rules:
-___
+
 
 ### Simple field rule
-___
+
 Is the most simple rule, this rule copy de data from the source object field to a destiny object field, both needs to be the same type
 
 ``` java 
         addTransmutatorRule(new SimpleFieldRule("name","employeeName"));
 
 ```
-___
+
 
 ### Complex field rule
-___
+
 The complex field rule is use when needs to map some field into other but is not the same type or needs extra work
 ``` java 
         //Complex field rule
@@ -60,10 +60,10 @@ The complex field rule is use when needs to map some field into other but is not
 ```
 When create a new ComplexFieldRule the <Type,Type> must be the same type that the source and destiny object, in this example the mapping is from String bornDate to int age
 
-___
+
 
 ### Generated field rule
-___
+
 The generate field rule is when need to set a field in destiny object but it not has similar in source object, this field will be generate using source object data or external data during the mapping process
 ``` java 
         //Generate field rules
@@ -83,10 +83,10 @@ The generate field rule is when need to set a field in destiny object but it not
        });
 ```
 
-___
+
  Adding Rules
  ---------
-___
+
 
 When you extends AbstractMapper a rules() method need to be Override, inside this method put all the rules for this mapper
 
@@ -126,11 +126,11 @@ When you extends AbstractMapper a rules() method need to be Override, inside thi
 ```
 
 
-___
+
 Using Transmutation
 ---------
 
-___
+
 
 ``` java 
     Transmutation transmutation = new Transmutation();
@@ -140,22 +140,22 @@ ___
 
 ```
 
-___
+
 #### Example
-___
+
 
 
 You can see a complete example of use in the test
 
 Developer
 ---------
-___
+
 * Adrián García Lomas <glomadrian@gmail.com>
 * Twitter acc - @glomAdrian (https://twitter.com/glomadrian)
-___
+
 License
 -------
-___
+
 
     Copyright 2014 Adrián García Lomas
 
@@ -170,4 +170,3 @@ ___
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
-___
