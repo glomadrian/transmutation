@@ -15,7 +15,7 @@ For a mapping between two Models you need to crate a transmutator (mapper) by ex
 For instance you need to Map from BasicUser to Employee, first create a Mapping class for this case
 
 
-``` java 
+``` java
 @Transmutator(
         fromClass = User.class,
         toClass = Employee.class
@@ -39,7 +39,7 @@ There are 3 types of rules:
 
 Is the most simple rule, this rule copy de data from the source object field to a destiny object field, both needs to be the same type
 
-``` java 
+``` java
         addTransmutatorRule(new SimpleFieldRule("name","employeeName"));
 
 ```
@@ -48,7 +48,7 @@ Is the most simple rule, this rule copy de data from the source object field to 
 ### Complex field rule
 
 The complex field rule is use when needs to map some field into other but is not the same type or needs extra work
-``` java 
+``` java
         //Complex field rule
         addTransmutatorRule(new ComplexFieldRule<String,Integer>("bornDate","age") {
             @Override
@@ -65,7 +65,7 @@ When create a new ComplexFieldRule the <Type,Type> must be the same type that th
 ### Generated field rule
 
 The generate field rule is when need to set a field in destiny object but it not has similar in source object, this field will be generate using source object data or external data during the mapping process
-``` java 
+``` java
         //Generate field rules
         addTransmutatorRule(new GenerateFieldRule<User>("employeeCompleteName") {
             @Override
@@ -84,17 +84,18 @@ The generate field rule is when need to set a field in destiny object but it not
 ```
 
 
- Adding Rules
- ---------
+Adding Rules
+---------
+
 
 
 When you extends AbstractMapper a rules() method need to be Override, inside this method put all the rules for this mapper
 
 
-``` java 
+``` java
    @Override
     public void rules() {
-       
+
          //Simple field rule
         addTransmutatorRule(new SimpleFieldRule("name","employeeName"));
 
@@ -132,7 +133,7 @@ Using Transmutation
 
 
 
-``` java 
+``` java
     Transmutation transmutation = new Transmutation();
     transmutation.addTransmutator(new UserToEmployeeTransmutator());
     //Add more transmutation (mappers) here
@@ -146,6 +147,18 @@ Using Transmutation
 
 
 You can see a complete example of use in the test
+
+
+For maven projects
+---------
+
+//TODO
+
+For gradle projects
+---------
+
+
+//TODO
 
 Developer
 ---------
