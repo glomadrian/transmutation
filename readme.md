@@ -137,7 +137,7 @@ Using Transmutation
     Transmutation transmutation = new Transmutation();
     transmutation.addTransmutator(new UserToEmployeeTransmutator());
     //Add more transmutation (mappers) here
-    Employee employee = transmutation.map(user, Employee.class);
+    Employee employee = transmutation.transmute(user, Employee.class);
 
 ```
 
