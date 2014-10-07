@@ -3,10 +3,11 @@ package com.glomadrian.transmutation.core;
 /**
  * @author Adrian Garcia Lomas
  */
-public interface Mapper <fromClass, toClass> {
+public interface Mapper <FromClass, ToClass> {
 
-    <toClass> toClass map(fromClass from, Class<toClass> to);
+    <ToClass> ToClass map(FromClass from, Class<ToClass> to);
     Class getToClass();
     Class getFromClass();
+    void setTransmutation(MapProcessor mapProcessor);
 
 }

@@ -19,6 +19,7 @@ public class Transmutation implements MapProcessor {
 
     @Override
     public void addTransmutator(Mapper mapper) {
+        mapper.setTransmutation(this);
         mapperRepository.add(mapper);
     }
 

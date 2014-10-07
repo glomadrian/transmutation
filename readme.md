@@ -39,8 +39,12 @@ There are 3 types of rules:
 
 Is the most simple rule, this rule copy de data from the source object field to a destiny object field, both needs to be the same type
 
-``` java
+``` java 
+        //Simple field String.class to String.class
         addTransmutatorRule(new SimpleFieldRule("name","employeeName"));
+         
+         //Simple field rule (Car.class to Car.class)
+        addTransmutatorRule(new SimpleFieldRule("car","car"));
 
 ```
 
@@ -82,6 +86,36 @@ The generate field rule is when need to set a field in destiny object but it not
            }
        });
 ```
+
+### Anidated Mapping
+Sometimes you need to map a object with other object dependency intro other object with other dependency, in this case you can use the transmutate inside the transmutator
+
+Before you can transmutate the object you need to add the correspondent transmutator
+
+``` java
+    transmutation.addTransmutator(new AddressToDirectionTransmutator());
+```
+
+Then you can use inside the transmutator too
+
+
+``` java
+//Complex field rule
+        addTransmutatorRule(new ComplexFieldRule<Address,Direction>("address","direction") {
+            @Override
+            public Direction map(Address address) {
+
+               //Use transmutator for mapping
+                try {
+                    return getTransmutation().transmute(address,Direction.class);
+                } catch (MapperNotFoundException e) {
+                    return new Direction();
+                }
+            }
+        });
+```
+
+You can use getTransmutation() when you need inside the transmutator
 
 
 Adding Rules

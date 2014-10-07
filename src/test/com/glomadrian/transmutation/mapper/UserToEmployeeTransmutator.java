@@ -2,9 +2,8 @@ package com.glomadrian.transmutation.mapper;
 
 import com.glomadrian.transmutation.AbstractTransmutator;
 import com.glomadrian.transmutation.core.annotation.Transmutator;
-import com.glomadrian.transmutation.model.Employee;
-import com.glomadrian.transmutation.model.JobServiceMock;
-import com.glomadrian.transmutation.model.User;
+import com.glomadrian.transmutation.exceptions.MapperNotFoundException;
+import com.glomadrian.transmutation.model.*;
 import com.glomadrian.transmutation.rule.ComplexFieldRule;
 import com.glomadrian.transmutation.rule.GenerateFieldRule;
 import com.glomadrian.transmutation.rule.SimpleFieldRule;
@@ -30,12 +29,29 @@ public class UserToEmployeeTransmutator extends AbstractTransmutator<User,Employ
         //Simple field rule
         addTransmutatorRule(new SimpleFieldRule("name", "employeeName"));
 
+        //Simple field rule (Custom object Car)
+        addTransmutatorRule(new SimpleFieldRule("car","car"));
+
         //Complex field rule
         addTransmutatorRule(new ComplexFieldRule<String, Integer>("bornDate", "age") {
             @Override
             public Integer map(String bornDate) {
                 String[] dates = bornDate.split("/");
                 return 2014 - Integer.parseInt(dates[2]);
+            }
+        });
+
+        //Complex field rule
+        addTransmutatorRule(new ComplexFieldRule<Address,Direction>("address","direction") {
+            @Override
+            public Direction map(Address address) {
+
+               //Use transmutator for mapping
+                try {
+                    return getTransmutation().transmute(address,Direction.class);
+                } catch (MapperNotFoundException e) {
+                    return new Direction();
+                }
             }
         });
 

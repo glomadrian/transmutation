@@ -3,8 +3,9 @@ package com.glomadrian.transmutation;
 import com.glomadrian.transmutation.core.annotation.Transmutator;
 import com.glomadrian.transmutation.exceptions.MalformedMapperException;
 import com.glomadrian.transmutation.exceptions.MapperNotFoundException;
-import com.glomadrian.transmutation.mapper.UserToEmployeeTransmutator;
+import com.glomadrian.transmutation.mapper.AddressToDirectionTransmutator;
 import com.glomadrian.transmutation.mapper.UserToEmployeeNameTransmutatorBroken;
+import com.glomadrian.transmutation.mapper.UserToEmployeeTransmutator;
 import com.glomadrian.transmutation.mapper.UserToUserComplexTransmutator;
 import com.glomadrian.transmutation.model.*;
 import com.glomadrian.transmutation.rule.GenerateFieldRule;
@@ -24,6 +25,7 @@ public class TransmutationTest extends TestCase {
         transmutation = new Transmutation();
         transmutation.addTransmutator(new UserToUserComplexTransmutator());
         transmutation.addTransmutator(new UserToEmployeeTransmutator(new JobServiceMock()));
+        transmutation.addTransmutator(new AddressToDirectionTransmutator());
     }
 
 
@@ -52,6 +54,9 @@ public class TransmutationTest extends TestCase {
         assertEquals("Adrián García Lomas",employee.getEmployeeCompleteName());
         assertEquals(27,employee.getAge());
         assertEquals("Developer",employee.getJob());
+        assertEquals(user.getCar().getMake(), employee.getCar().getMake());
+        String direction = user.getAddress().getStreet()+" "+user.getAddress().getNumber()+" "+user.getAddress().getPostalCode();
+        assertEquals(direction,employee.getDirection().getDirection());
 
     }
 

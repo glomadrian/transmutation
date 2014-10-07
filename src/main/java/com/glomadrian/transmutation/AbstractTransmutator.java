@@ -1,5 +1,6 @@
 package com.glomadrian.transmutation;
 
+import com.glomadrian.transmutation.core.MapProcessor;
 import com.glomadrian.transmutation.core.Mapper;
 import com.glomadrian.transmutation.core.annotation.Transmutator;
 import com.glomadrian.transmutation.exceptions.MalformedMapperException;
@@ -28,6 +29,7 @@ public abstract class AbstractTransmutator<fromClass, toClass> implements Mapper
     private List<Field> toFields;
     private Class fromClass;
     private Class toClass;
+    private MapProcessor transmutator;
 
     public abstract void rules();
 
@@ -193,5 +195,14 @@ public abstract class AbstractTransmutator<fromClass, toClass> implements Mapper
         }
 
         return false;
+    }
+
+    public MapProcessor getTransmutation() {
+        return transmutator;
+    }
+
+    @Override
+    public void setTransmutation(MapProcessor mapProcessor) {
+       transmutator = mapProcessor;
     }
 }

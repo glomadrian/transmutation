@@ -9,6 +9,8 @@ public class Employee {
     private String employeeCompleteName;
     private int age;
     private String job;
+    private Car car;
+    private Direction direction;
 
     public String getEmployeeName() {
         return employeeName;
@@ -40,5 +42,21 @@ public class Employee {
 
     public void setJob(String job) {
         this.job = job;
+    }
+
+    public Car getCar() {
+        return car;
+    }
+
+    public void setCar(Car car) {
+        this.car = car;
+    }
+
+    public Direction getDirection() {
+        return direction;
+    }
+
+    public void setDirection(Direction direction) {
+        this.direction = direction;
     }
 }
